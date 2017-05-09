@@ -20,7 +20,7 @@ public class QueuedProgressBar extends View {
 
     private float mCx;
 
-    private int mBallColor;
+    private int mAccentColor;
 
     private int mTotalBalls;
 
@@ -35,6 +35,8 @@ public class QueuedProgressBar extends View {
     private boolean isNewCycle;
 
     private float mIntervalValue;
+
+    private int mBallColor;
 
     public QueuedProgressBar(Context context) {
         super(context);
@@ -60,13 +62,15 @@ public class QueuedProgressBar extends View {
         mIntervalValue = a.getFloat(R.styleable.QueuedProgressBar_interval, 3);
         mTotalBalls = a.getInteger(R.styleable.QueuedProgressBar_ballCount, 5);
 
+        TypedValue typedValue = new TypedValue();
+        TypedArray array = context.obtainStyledAttributes(typedValue.data, new int[]{R.attr.colorAccent});
+        mAccentColor = array.getColor(0, Color.BLACK);
+        array.recycle();
+
         if (a.hasValue(R.styleable.QueuedProgressBar_ballColor)) {
-            mBallColor = a.getColor(R.styleable.QueuedProgressBar_ballColor, mBallColor);
+            mBallColor = a.getColor(R.styleable.QueuedProgressBar_ballColor, mAccentColor);
         } else {
-            TypedValue typedValue = new TypedValue();
-            TypedArray array = context.obtainStyledAttributes(typedValue.data, new int[]{R.attr.colorAccent});
-            mBallColor = array.getColor(0, Color.BLACK);
-            array.recycle();
+            mBallColor = mAccentColor;
         }
 
         a.recycle();
@@ -165,10 +169,12 @@ public class QueuedProgressBar extends View {
      * Sets the view's example color attribute value. In the example view, this color
      * is the font color.
      *
-     * @param ballColor The ball color attribute value to use.
+     * @param ballColor The ball color attribute value to change the ball's color.
      */
     public void setBallColor(int ballColor) {
-        mBallColor = ballColor;
+
+        mBallColor = ballColor == 0 ? mAccentColor : ballColor;
+        mPaint.setColor(mBallColor);
         invalidate();
     }
 
