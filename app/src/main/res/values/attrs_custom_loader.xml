@@ -1,8 +1,0 @@
-<resources>
-    <declare-styleable name="QueuedProgressBar">
-        <attr name="ballRadius" format="float" />
-        <attr name="ballCount" format="integer" />
-        <attr name="ballColor" format="color" />
-        <attr name="interval" format="float" />
-    </declare-styleable>
-</resources>

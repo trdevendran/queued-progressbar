@@ -1,4 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">QueuedProgressBar</string>
+    <string name="app_name">QueuedProgressbar Sample</string>
+    <string name="speed_title">Interval Speed:</string>
+    <string name="radius_title">Radius Value:</string>
+    <string name="ball_count_title">No of Balls:</string>
+    <string name="red">Red</string>
+    <string name="green">Green</string>
+    <string name="blue">Blue</string>
+    <string name="defaultColor">Default(Theme-colorAccent)</string>
+    <string name="ball_color_title">Applying dynamic ball color</string>
 </resources>
